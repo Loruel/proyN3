@@ -1,18 +1,22 @@
 import React from 'react'
+import { useClima } from '../../context/climaContext'
 
 export default function DataClima() {
+    const { clima, todayToday, KaFhrenheit } = useClima()
+
+
     return (
         <div className='flex flex-col items-center'>
             <div className='flex items-end'>
                 <p className='text-white text-8xl font-semibold'>
-                    15
+                    {clima.main && Math.round(KaFhrenheit(clima.main.temp))}
                 </p>
                 <p className='text-[#88869D] text-5xl'>
-                    °C
+                    °F
                 </p>
             </div>
             <h2 className='mt-5 text-[#88869D] text-xl font-bold lg:mt-20'>
-                Shower
+                {clima.weather && clima.weather[0].main}
             </h2>
             <div className='flex items-center mt-7 lg:mt-20'>
                 <p className='text-[#88869D]'>
@@ -20,16 +24,16 @@ export default function DataClima() {
                 </p>
                 <span className='mx-2 text-[#88869D]'>•</span>
                 <p className='text-[#88869D]'>
-                    Fri, 5 Jun
+                    {todayToday}
                 </p>
             </div>
             <div className='flex items-center mt-5 mb-10'>
                 <img className='h-4' src="locaion.svg" alt="" />
-                <p className='text-[#88869D]'>
-                    Helsinki
+                <p className='text-[#88869D] ml-1'>
+                    {clima.name}
                 </p>
             </div>
-            
+
         </div>
     )
 }

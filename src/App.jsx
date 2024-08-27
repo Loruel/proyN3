@@ -3,6 +3,7 @@ import ClimaPrincipal from './components/climaPrincipal/climaPrincipal'
 import ClimaTomorrows from './components/climaTomorrows/climaTomorrows'
 import DatosPrecisos from './components/datosPrecisos/datosPrecisos'
 import Footer from './components/footer/footer'
+import Modal from './components/modal/modal'
 
 export default function App() {
   return (
@@ -10,6 +11,8 @@ export default function App() {
 
       <div className='lg:w-3/12'>
         <ClimaPrincipal />
+
+        <Modal/>
       </div>
 
       <div className='lg:w-full lg:flex lg:flex-col'>

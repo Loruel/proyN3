@@ -1,7 +1,10 @@
 import React from 'react'
 import BotonesTomorrow from './botonesTomorrow'
+import { useClima } from '../../context/climaContext'
 
 export default function ClimaTomorrows() {
+    const { } = useClima()
+
     return (
         <>
             <BotonesTomorrow />
@@ -9,7 +12,7 @@ export default function ClimaTomorrows() {
             <div className='lg:flex lg:justify-center'>
 
                 <div className='m-9 grid grid-cols-2 mb-10 gap-x-6 lg:flex lg:w-5/6 lg:gap-x-8'>
-        
+
                     <div className='bg-[#1E213A] w-full h-48 flex flex-col items-center lg:h-full'>
                         <h4 className='text-white mt-3 lg:mt-1'>
                             Tomorrow

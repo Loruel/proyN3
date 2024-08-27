@@ -1,6 +1,9 @@
 import React from 'react'
+import { useClima } from '../../context/climaContext'
 
 export default function Visibility() {
+  const { clima, maMilla } = useClima()
+
   return (
     <div className='w-full h-full bg-[#1E213A] text-[#E7E7EB] mt-6 flex flex-col items-center'>
       <p className='mt-5'>
@@ -8,7 +11,7 @@ export default function Visibility() {
       </p>
       <div className='flex items-center mt-4 mb-8'>
         <h2 className='text-6xl font-bold'>
-          6,4
+          {clima.visibility && maMilla(clima.visibility).toFixed(2)}
         </h2>
         <h3 className='text-4xl ml-2'>
           miles
@@ -17,3 +20,4 @@ export default function Visibility() {
     </div>
   )
 }
+

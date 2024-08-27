@@ -1,6 +1,9 @@
 import React from 'react'
+import { useClima } from '../../context/climaContext'
 
 export default function Wind() {
+  const { clima } = useClima()
+
   return (
     <div className='w-full h-full bg-[#1E213A] text-[#E7E7EB] mt-6 flex flex-col items-center'>
       <p className='mt-5'>
@@ -8,7 +11,7 @@ export default function Wind() {
       </p>
       <div className='flex items-center mt-4'>
         <h2 className='text-6xl font-bold'>
-          7
+          {clima.wind && clima.wind.speed}
         </h2>
         <h3 className='text-3xl'>
           mph

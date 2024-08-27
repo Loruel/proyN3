@@ -1,10 +1,13 @@
 import React from 'react'
+import { useClima } from '../../context/climaContext'
 
 export default function BotonesClima() {
+    const { toggleModal } = useClima()
+
     return (
         <div className='flex items-center p-2'>
 
-            <button className='bg-[#6E707A] w-52 h-8 text-sm text-white mt-4 lg:ml-8 lg:mt-6 lg:w-72'>
+            <button className='bg-[#6E707A] w-52 h-8 text-sm text-white mt-4 lg:ml-8 lg:mt-6 lg:w-72' onClick={toggleModal}>
                 Search for places
             </button>
 
