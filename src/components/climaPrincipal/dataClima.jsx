@@ -2,17 +2,22 @@ import React from 'react'
 import { useClima } from '../../context/climaContext'
 
 export default function DataClima() {
-    const { clima, todayToday, KaFhrenheit } = useClima()
+    const { clima, todayToday, KaCelsius, KaFhrenheit, buttonCF } = useClima()
 
+    const temperatura = clima.main
+        ? buttonCF === 'C'
+            ? Math.round(KaCelsius(clima.main.temp))
+            : Math.round(KaFhrenheit(clima.main.temp))
+        : '--   '
 
     return (
         <div className='flex flex-col items-center'>
             <div className='flex items-end'>
                 <p className='text-white text-8xl font-semibold'>
-                    {clima.main && Math.round(KaFhrenheit(clima.main.temp))}
+                    {temperatura}
                 </p>
                 <p className='text-[#88869D] text-5xl'>
-                    °F
+                    °{buttonCF}
                 </p>
             </div>
             <h2 className='mt-5 text-[#88869D] text-xl font-bold lg:mt-20'>

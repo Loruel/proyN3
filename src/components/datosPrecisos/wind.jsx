@@ -2,7 +2,10 @@ import React from 'react'
 import { useClima } from '../../context/climaContext'
 
 export default function Wind() {
-  const { clima } = useClima()
+  const { clima, getAbreviatura } = useClima()
+
+  const deg = clima.wind ? getAbreviatura(clima.wind.deg) : '--'
+  const graditos = clima.wind && clima.wind.deg
 
   return (
     <div className='w-full h-full bg-[#1E213A] text-[#E7E7EB] mt-6 flex flex-col items-center'>
@@ -17,12 +20,12 @@ export default function Wind() {
           mph
         </h3>
       </div>
-      <div className='flex mt-5 mb-5'>
-        <figure className='w-5 h-5 rounded-full bg-gray-500'>
-          <img className='w-full h-full' src="arrow.svg" alt="" />
+      <div className='flex items-center mt-5 mb-5 lg:mt-10 lg:mb-0'>
+        <figure className='w-5 h-5 rounded-full bg-gray-500 lg:w-10 lg:h-10'>
+          <img className='w-full h-full' style={{ transform: `rotate(${graditos}deg)` }} src="arrow.svg" alt="" />
         </figure>
         <p className='ml-2'>
-          WSW
+          {deg}
         </p>
       </div>
     </div>

@@ -9,8 +9,8 @@ const climaContext = createContext()
 export function ClimaProvider({ children }) {
 
     ///Lat y Lon
-    const [lat, setLat] = useState(37.7749)
-    const [lon, setLon] = useState(-122.4194)
+    const [lat, setLat] = useState(19.4326)
+    const [lon, setLon] = useState(-99.1332)
 
     ///Clima de un solo HOY
     const [clima, setClima] = useState([])
@@ -32,6 +32,8 @@ export function ClimaProvider({ children }) {
         return m / 1609.34
     }
 
+
+    //Datos diarios
     async function getData() {
         try {
             const rs = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=be6606f57229709f696e7669f6bdc185`)
@@ -52,7 +54,7 @@ export function ClimaProvider({ children }) {
 
     async function getPronostico() {
         try {
-            const rs = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=be6606f57229709f696e7669f6bdc185`)
+            const rs = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=32.7157&lon=-117.1611&appid=be6606f57229709f696e7669f6bdc185`)
             const rsjson = await rs.json()
 
             setPronostico(rsjson)
@@ -97,6 +99,39 @@ export function ClimaProvider({ children }) {
         return typeImge[type] || 'null'
     }
 
+    ///Abreviaturas
+    const getAbreviatura = (grados) => {
+        const typeAbreviatura = [
+            { rango: [0, 22.5], abreviacion: 'N' },
+            { rango: [22.5, 67.5], abreviacion: 'NNE' },
+            { rango: [67.5, 112.5], abreviacion: 'NE' },
+            { rango: [112.5, 157.5], abreviacion: 'ENE' },
+            { rango: [157.5, 202.5], abreviacion: 'E' },
+            { rango: [202.5, 247.5], abreviacion: 'ESE' },
+            { rango: [247.5, 292.5], abreviacion: 'SE' },
+            { rango: [292.5, 337.5], abreviacion: 'SSE' },  
+            { rango: [337.5, 360], abreviacion: 'S' },
+            { rango: [0, 22.5], abreviacion: 'SSW' },
+            { rango: [22.5, 67.5], abreviacion: 'SW' },
+            { rango: [67.5, 112.5], abreviacion: 'WSW' },
+            { rango: [112.5, 157.5], abreviacion: 'W' },
+            { rango: [157.5, 202.5], abreviacion: 'WNW' },
+            { rango: [202.5, 247.5], abreviacion: 'NW' },
+            { rango: [247.5, 292.5], abreviacion: 'NNW' },
+            { rango: [292.5, 337.5], abreviacion: 'N' }
+        ];
+
+        let rsAbreviacion = 'Unknown';
+
+        typeAbreviatura.forEach(({ rango, abreviacion }) => {
+            if (grados >= rango[0] && grados < rango[1]) {
+                rsAbreviacion = abreviacion;
+            }
+        });
+
+        return rsAbreviacion
+    }
+
     ///modal
     const [openMenu, setOpenMenu] = useState(false);
 
@@ -106,8 +141,10 @@ export function ClimaProvider({ children }) {
 
 
 
+
+
     return (
-        <climaContext.Provider value={{ clima, todayToday, pronostico, getImage, porDia, openMenu, toggleModal, setLat, setLon, KaCelsius, KaFhrenheit, maMilla, buttonCF, setButtonCF }}>
+        <climaContext.Provider value={{ clima, todayToday, pronostico, getImage, porDia, openMenu, toggleModal, setLat, setLon, KaCelsius, KaFhrenheit, maMilla, buttonCF, setButtonCF, getAbreviatura }}>
             {children}
         </climaContext.Provider>
     )

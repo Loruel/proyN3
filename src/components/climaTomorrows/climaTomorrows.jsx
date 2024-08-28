@@ -3,7 +3,15 @@ import BotonesTomorrow from './botonesTomorrow'
 import { useClima } from '../../context/climaContext'
 
 export default function ClimaTomorrows() {
-    const { } = useClima()
+    const { clima, buttonCF, KaCelsius, KaFhrenheit, getImage } = useClima()
+
+    const temperatura = clima.main
+        ? buttonCF === 'C'
+            ? Math.round(KaCelsius(clima.main.temp))
+            : Math.round(KaFhrenheit(clima.main.temp))
+        : '--   '
+
+        const weatherIcon = clima.weather ? getImage(clima.weather[0].icon) : '/01d.png'
 
     return (
         <>
@@ -18,14 +26,14 @@ export default function ClimaTomorrows() {
                             Tomorrow
                         </h4>
                         <figure className='w-3/5 mt-2'>
-                            <img src="Shower.png" alt="" />
+                            <img src={weatherIcon} alt="" />
                         </figure>
                         <div className='flex space-x-3 mt-6'>
                             <p className='text-white'>
-                                16°C
+                                {temperatura}°{buttonCF}
                             </p>
                             <p className='text-gray-400 lg:mb-1'>
-                                11°C
+                                {temperatura}°{buttonCF}
                             </p>
                         </div>
                     </div>
@@ -35,14 +43,14 @@ export default function ClimaTomorrows() {
                             Tomorrow
                         </h4>
                         <figure className='w-3/5 mt-2'>
-                            <img src="Shower.png" alt="" />
+                            <img src={weatherIcon} alt="" />
                         </figure>
                         <div className='flex space-x-3 mt-6'>
                             <p className='text-white'>
-                                16°C
+                                {temperatura}°{buttonCF}
                             </p>
                             <p className='text-gray-400 lg:mb-1'>
-                                11°C
+                                {temperatura}°{buttonCF}
                             </p>
                         </div>
                     </div>
@@ -52,14 +60,14 @@ export default function ClimaTomorrows() {
                             Tomorrow
                         </h4>
                         <figure className='w-3/5 mt-2'>
-                            <img src="Shower.png" alt="" />
+                            <img src={weatherIcon} alt="" />
                         </figure>
                         <div className='flex space-x-3 mt-6'>
                             <p className='text-white'>
-                                16°C
+                                {temperatura}°{buttonCF}
                             </p>
                             <p className='text-gray-400 lg:mb-1'>
-                                11°C
+                                {temperatura}°{buttonCF}
                             </p>
                         </div>
                     </div>
@@ -69,14 +77,14 @@ export default function ClimaTomorrows() {
                             Tomorrow
                         </h4>
                         <figure className='w-3/5 mt-2'>
-                            <img src="Shower.png" alt="" />
+                            <img src={weatherIcon} alt="" />
                         </figure>
                         <div className='flex space-x-3 mt-6'>
                             <p className='text-white'>
-                                16°C
+                                {temperatura}°{buttonCF}
                             </p>
                             <p className='text-gray-400 lg:mb-1'>
-                                11°C
+                                {temperatura}°{buttonCF}
                             </p>
                         </div>
                     </div>
@@ -86,14 +94,14 @@ export default function ClimaTomorrows() {
                             Tomorrow
                         </h4>
                         <figure className='w-3/5 mt-2'>
-                            <img src="Shower.png" alt="" />
+                            <img src={weatherIcon} alt="" />
                         </figure>
                         <div className='flex space-x-3 mt-6'>
                             <p className='text-white'>
-                                16°C
+                                {temperatura}°{buttonCF}
                             </p>
                             <p className='text-gray-400 lg:mb-1'>
-                                11°C
+                                {temperatura}°{buttonCF}
                             </p>
                         </div>
                     </div>
